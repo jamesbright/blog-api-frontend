@@ -162,10 +162,10 @@
       </b-col>
     </b-row>
     <div class="text-center">
-      <b-button @click="nextPage" :disabled="!hasPrev" variant="secodary"
+      <b-button @click="nextPage()" :disabled="!hasPrev" variant="secodary"
         ><b-icon icon="chevron-compact-left"></b-icon
       ></b-button>
-      <b-button @click="prevPage" :disabled="!hasPrev" variant="secondary"
+      <b-button @click="prevPage()" :disabled="!hasPrev" variant="secondary"
         ><b-icon icon="chevron-compact-right"></b-icon
       ></b-button>
     </div>
