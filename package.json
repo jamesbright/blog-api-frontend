@@ -7,6 +7,9 @@
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
   },
+  "engines": {
+    "node": "14.15.4"
+  },
   "dependencies": {
     "@ckeditor/ckeditor5-build-classic": "^27.0.0",
     "@ckeditor/ckeditor5-vue2": "^1.0.5",
@@ -21,13 +24,12 @@
     "vue-button-spinner": "^2.2.1",
     "vue-moment": "^4.1.0",
     "vue-router": "^3.5.1",
-    "vue-toast-notification": "^0.6.1",
-    "@vue/cli-service": "^4.5.12"
+    "vue-toast-notification": "^0.6.1"
   },
   "devDependencies": {
+    "@vue/cli-service": "^4.5.12",
     "@vue/cli-plugin-babel": "~4.5.0",
     "@vue/cli-plugin-eslint": "~4.5.0",
-    
     "babel-eslint": "^10.1.0",
     "eslint": "^6.7.2",
     "eslint-plugin-vue": "^6.2.2",

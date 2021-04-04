@@ -1,12 +1,12 @@
 <template>
   <b-container>
-    <div  class="text-center">
+    <div class="text-center">
       <b-card-text>Enter new password</b-card-text>
       <div class="row">
         <div class="col-lg-6 offset-lg-3 col-sm-10 offset-sm-1">
           <form
             class="text-center border border-primary p-5"
-                        @submit.prevent="resetPassword"
+            @submit.prevent="resetPassword"
           >
             <input
               type="password"
@@ -35,7 +35,7 @@
                 class="btn btn-primary btn-block w-75 my-4"
                 type="submit"
               >
-               Reset
+                Reset
               </button-spinner>
             </center>
           </form>
@@ -63,7 +63,7 @@ export default {
       console.log(this.$route.query.token);
       this.token = this.$route.query.token;
       this.userId = this.$route.query.userId;
-    }else{      
+    } else {
       return Vue.$toast.error("Error, no token found");
     }
   },
@@ -72,11 +72,10 @@ export default {
       this.isLoading = true;
 
       if (!this.$route.query.token) {
-      this.isLoading = false;
-      this.status = false;
-      return Vue.$toast.error("Error, no token found");
-
-    }
+        this.isLoading = false;
+        this.status = false;
+        return Vue.$toast.error("Error, no token found");
+      }
       if (this.password === this.passwordConfirm && this.password.length >= 8) {
         this.$http
           .post("/auth/reset-password", {
@@ -94,7 +93,7 @@ export default {
             Vue.$toast.success(response.data.message);
             this.$router.push({ name: "login" });
           })
-          .catch((error) =>{
+          .catch((error) => {
             this.isLoading = false;
             this.status = false;
             return Vue.$toast.error(error);
