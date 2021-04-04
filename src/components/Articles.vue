@@ -162,11 +162,12 @@
       </b-col>
     </b-row>
     <div class="text-center">
-      <b-button @click="nextPage()" :disabled="!hasNext" variant="secondary"
-        ><b-icon icon="chevron-compact-right"></b-icon
-      ></b-button>
       <b-button @click="prevPage()" :disabled="!hasPrev" variant="secondary"
         ><b-icon icon="chevron-compact-left"></b-icon
+      ></b-button>
+
+      <b-button @click="nextPage()" :disabled="!hasNext" variant="secondary"
+        ><b-icon icon="chevron-compact-right"></b-icon
       ></b-button>
     </div>
   </b-container>
@@ -186,7 +187,7 @@ export default {
       hasPrev: "",
       loading: true,
       keyword: "",
-      limit: 5,
+      limit: 6,
       page: 1,
     };
   },
@@ -239,11 +240,10 @@ export default {
         .then((response) => {
           this.loading = false;
           this.blogs = response.data.blogs;
-          this.hasNext = this.blogs.hasNext;
-          this.hasPrev = this.blogs.hasPrev;
+          this.hasNext = response.data.pagination.hasNext;
+          this.hasPrev = response.data.pagination.hasPrev;
         })
         .catch((error) => {
-          console.log(error);
           return Vue.$toast.error(error.response.data.message);
         });
     },

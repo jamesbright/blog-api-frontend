@@ -28,37 +28,31 @@
         <b-card-text class="user-info">User details not found</b-card-text>
       </b-card>
     </div>
-<hr>
+    <hr />
     <div class="mt-2 col-sm-6 col-md-6 col-lg-6 col-xs-6">
-      <b-input-group size="sm"  class=" mb-2 text-right">
-      <b-input-group-prepend  is-text>
-        <b-icon icon="search"></b-icon>
-        <b-form-input
-        placeholder="search"
-          v-model="keyword"
-          class="ml-1"
-          id="search"
-        > </b-form-input>
+      <b-input-group size="sm" class="mb-2 text-right">
+        <b-input-group-prepend is-text>
+          <b-icon icon="search"></b-icon>
+          <b-form-input placeholder="search" v-model="keyword" class="ml-1" id="search">
+          </b-form-input>
         </b-input-group-prepend>
-        </b-input-group>
-     </div>
-  
+      </b-input-group>
+    </div>
+
     <b-row class="mt-2" v-if="blogs">
-    
       <b-col
         v-for="(blog, index) in blogs"
         :key="index"
         class="mb-4 col-sm-4 col-md-4 col-lg-4"
       >
-      
         <b-card
           :header="blog.title"
           header-bg-variant="danger"
           header-text-variant="white"
           align="center"
         >
-        <b-card-img
-        v-if="blog.imageURL != null"
+          <b-card-img
+            v-if="blog.imageURL != null"
             style="max-height: 15rem"
             :src="blog.imageURL"
             alt="Image"
@@ -66,7 +60,7 @@
           >
           </b-card-img>
           <b-card-img
-        v-else
+            v-else
             style="max-height: 15rem"
             src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__340.jpg"
             alt="Image"
@@ -99,7 +93,6 @@
             ></b-button>
           </b-card-body>
         </b-card>
-        
       </b-col>
     </b-row>
   </b-container>
@@ -116,7 +109,7 @@ export default {
       msg: "Admin info",
       user: "",
       blogs: "",
-      keyword:"",
+      keyword: "",
       auth: {
         config: "",
         token: "",
@@ -130,7 +123,6 @@ export default {
       this.$http
         .get(`/user/get/${userId}`, {})
         .then((response) => {
-          console.log(response);
           this.user = response.data.user;
         })
         .catch((error) => {
@@ -147,66 +139,59 @@ export default {
         this.blogs = response.data.blogs;
       })
       .catch((error) => {
-        console.log(error);
         return Vue.$toast.error(error.response.data.message);
       });
   },
 
-    created() {
+  created() {
     this.debounceSearch = debounce(this.search, 1000);
   },
   watch: {
     keyword() {
       if (!this.keyword) return;
       this.debounceSearch();
-    }
+    },
   },
 
   methods: {
     remove(id, index) {
-         this.auth.token = localStorage.getItem("myyin_jwt");
-                  if (this.auth.token != null) {
-                    this.auth.config = {
-                      headers: { Authorization: `Bearer ${this.auth.token}` },
-                    };
-                  }
+      this.auth.token = localStorage.getItem("myyin_jwt");
+      if (this.auth.token != null) {
+        this.auth.config = {
+          headers: { Authorization: `Bearer ${this.auth.token}` },
+        };
+      }
       this.$http
-        .delete(`/blog/delete/${id}`,this.auth.config)
+        .delete(`/blog/delete/${id}`, this.auth.config)
         .then((response) => {
-         this.blogs.splice(index,1);
+          this.blogs.splice(index, 1);
           return Vue.$toast.success(response.data.message);
         })
         .catch((error) => {
           return Vue.$toast.error(error.response.data.message);
-        }); 
+        });
     },
 
-      formatDate(value) {
+    formatDate(value) {
       if (value) {
         return moment(String(value)).format("MM-DD-YYYY");
       }
     },
-      search() {
+    search() {
       // eslint-disable-next-line no-console
       console.log(`Checking name: ${this.keyword}`);
       this.$http
         .get("/blogs/get", {
           params: {
             search: this.keyword,
-            limit:6
-          }
+            limit: 6,
+          },
         })
-        .then(response => {
-          // eslint-disable-next-line no-console
-          console.log(response.data.blogs);
+        .then((response) => {
           this.blogs = response.data.blogs;
         })
-        .catch(err => {
-          // eslint-disable-next-line no-console
-          console.log(err);
-        });
-    }
-
+        .catch((err) => {});
+    },
   },
 };
 </script>
