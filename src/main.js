@@ -24,8 +24,8 @@ Vue.use(IconsPlugin)
 Vue.use(DropdownPlugin)
 Vue.use(FormSelectPlugin)
 const base = Axios.create({
-  //baseURL: "https://blog-api764.herokuapp.com/api/" // replace on production env
-  baseURL: "http://localhost:5000/api/" // replace on production env
+  baseURL: "https://blog-api764.herokuapp.com/api/" // replace on production env
+  //baseURL: "http://localhost:5000/api/" // replace on production env
 });
 Vue.prototype.$http = base;
 
