@@ -1,6 +1,6 @@
 # vue-blog
 
-##backend API documentation with swagger
+## backend API documentation with swagger
 
 
 [https://app.swaggerhub.com/apis-docs/ja4/MyyInvest_techInterns_authAPI/1.0.0-oas3](https://app.swaggerhub.com/apis-docs/ja4/MyyInvest_techInterns_authAPI/1.0.0-oas3)
