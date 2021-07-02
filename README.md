@@ -1,5 +1,5 @@
 # vue-blog
-[Hosted app](blog-api764.netlify.app)
+[Hosted app](https://blog-api764.netlify.app)
 
 ## backend API documentation with swagger
 
